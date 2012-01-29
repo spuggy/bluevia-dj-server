@@ -5,6 +5,8 @@ import grails.converters.JSON
 
 class DjController {
 
+	SpotifyService spotifyService
+
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
@@ -14,21 +16,20 @@ class DjController {
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
 		
-		def djs = Dj.findAll()
-
-		if(request.forwardURI.contains("json")) {
-			
+		[djInstanceList: Dj.list(params), djInstanceTotal: Dj.count()]
 		
-		//	render(contentType:"text/json") {djsx(djdata:djs)	}
-		render(contentType:"text/json") {djsx(djdata:"djs")	}
-			
-			
-		} else {
-			[djInstanceList: Dj.list(params), djInstanceTotal: Dj.count()]
-		}
-		
-	
     }
+	
+	def nexttrack() {
+		def djs = Dj.findAll()
+		
+		def nextTrack = spotifyService.getNextTrack("Radiohead")
+		
+		response.setHeader("Access-Control-Allow-Origin", "*"); 
+		render(contentType:"text/json") { track(trackData:nextTrack)	}
+		
+	}
+
 
     def create() {
         [djInstance: new Dj(params)]
