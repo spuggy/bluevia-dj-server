@@ -26,6 +26,8 @@
 					
 						<g:sortableColumn property="bands" title="${message(code: 'dj.bands.label', default: 'Bands')}" />
 					
+						<g:sortableColumn property="isdj" title="${message(code: 'dj.isdj.label', default: 'Isdj')}" />
+					
 						<g:sortableColumn property="name" title="${message(code: 'dj.name.label', default: 'Name')}" />
 					
 					</tr>
@@ -35,6 +37,8 @@
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
 						<td><g:link action="show" id="${djInstance.id}">${fieldValue(bean: djInstance, field: "bands")}</g:link></td>
+					
+						<td><g:formatBoolean boolean="${djInstance.isdj}" /></td>
 					
 						<td>${fieldValue(bean: djInstance, field: "name")}</td>
 					

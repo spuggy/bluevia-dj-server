@@ -1,3 +1,4 @@
+
 <%@ page import="bvdj.Dj" %>
 <!doctype html>
 <html>
@@ -27,6 +28,15 @@
 					<span id="bands-label" class="property-label"><g:message code="dj.bands.label" default="Bands" /></span>
 					
 						<span class="property-value" aria-labelledby="bands-label"><g:fieldValue bean="${djInstance}" field="bands"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${djInstance?.isdj}">
+				<li class="fieldcontain">
+					<span id="isdj-label" class="property-label"><g:message code="dj.isdj.label" default="Isdj" /></span>
+					
+						<span class="property-value" aria-labelledby="isdj-label"><g:formatBoolean boolean="${djInstance?.isdj}" /></span>
 					
 				</li>
 				</g:if>

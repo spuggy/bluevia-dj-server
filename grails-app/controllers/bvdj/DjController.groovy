@@ -21,12 +21,16 @@ class DjController {
     }
 	
 	def nexttrack() {
-		def djs = Dj.findAll()
 		
-		def nextTrack = spotifyService.getNextTrack("Radiohead")
+		def djList = Dj.where {isdj == true}		
+		//print dj.name
+		
+		def dj = djList.find();
+		
+		def nextTrack = spotifyService.getNextTrack(dj.bands)
 		
 		response.setHeader("Access-Control-Allow-Origin", "*"); 
-		render(contentType:"text/json") { track(trackData:nextTrack)	}
+		render(contentType:"text/json") { trackdata(djdata:dj,track:nextTrack)	}
 		
 	}
 
