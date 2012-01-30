@@ -23,8 +23,7 @@ class DjController {
 	def nexttrack() {
 		
 		def djList = Dj.where {isdj == true}		
-		//print dj.name
-		
+	
 		def dj = djList.find();
 		
 		def nextTrack = spotifyService.getNextTrack(dj.bands)
