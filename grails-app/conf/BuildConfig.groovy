@@ -21,6 +21,8 @@ grails.project.dependency.resolution = {
         grailsHome()
         grailsCentral()
         mavenCentral()
+		mavenLocal()
+
 
         // uncomment these to enable remote dependency resolution from public Maven repositories
         //mavenCentral()
@@ -35,6 +37,7 @@ grails.project.dependency.resolution = {
 
         // runtime 'mysql:mysql-connector-java:5.1.16'
 
+		runtime 'postgresql:postgresql:8.4-702.jdbc3'
 		runtime ('org.codehaus.groovy.modules.http-builder:http-builder:0.5.0') {
 				excludes 'xalan'
 				excludes 'xml-apis'
